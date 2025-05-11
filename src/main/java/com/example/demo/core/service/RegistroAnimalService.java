@@ -25,6 +25,5 @@ public class RegistroAnimalService implements RegistroDeAnimalUsecase {
         animalRepository.save(animal);
     }
     public void existeAnimal(){
-
     }
 }
