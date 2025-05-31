@@ -20,7 +20,7 @@ public class RegistroAnimalController {
     public ResponseEntity<RestMessage> postAnimalResquest(@RequestBody AnimalDto animalDto){
         RestMessage restMessage = new RestMessage();
         restMessage.setMessage("animal cadastrado");
-        System.out.println(animalDto.idade());
+//        System.out.println(animalDto.idade());
         registroDeAnimalUsecase.registroAnimal(animalDto);
 
         return ResponseEntity.status(HttpStatus.OK).body(restMessage);
