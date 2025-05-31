@@ -23,19 +23,6 @@ public class RegistroAnimalService implements RegistroDeAnimalUsecase {
 
         Boolean temNulo = Utils.hasNullField(animalDto);
 
-//        if(temNulo == false && existeAnimal(animalDto.nome_do_animal(),animalDto.cpf_dono()) == false ){
-//            animal.setCpf(animalDto.cpf_dono());
-//            animal.setIdade(animalDto.idade());
-//            animal.setPorte(animalDto.porte());
-//            animal.setNome(animalDto.nome_do_animal());
-//            animal.setTipo(animalDto.tipo());
-//
-//            animalRepository.save(animal);
-//        }
-//        else{
-//            System.out.println("Campo Vazio");
-//        }
-
         if(temNulo == true){
             System.out.println("Campo Vazio");
         } else if (existeAnimal(animalDto.nome_do_animal(),animalDto.cpf_dono()) == true) {
