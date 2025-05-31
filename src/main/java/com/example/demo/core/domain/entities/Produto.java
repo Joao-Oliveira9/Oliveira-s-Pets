@@ -33,7 +33,7 @@ public class Produto {
     @JoinColumn(name = "marca", nullable = false)
     private Marca marca;
 
-    @Column(name = "codigoEAN-13", nullable = false)
+    @Column(name = "codigoEAN_13", nullable = false)
     private String codigoEAN13;
 
     @CreationTimestamp
