@@ -29,9 +29,10 @@ public class RegistroProdutoService implements RegistroDeProdutoUsecase {
         Produto produto = new Produto();
         Estoque estoque = new Estoque();
 
+        System.out.println("Categoria: " + produtoDto.nome_categoria());
         Categoria categoria = categoriaRepository.findByNome(produtoDto.nome_categoria());
 
-        System.out.println(categoria.getNome());
+        System.out.println("Marca: " + produtoDto.nome_marca());
         Marca marca = marcaRepository.findByNome(produtoDto.nome_marca());
         Fornecedor fornecedor = fornecedorRepository.findByNome(produtoDto.nome_fornecedor());
 

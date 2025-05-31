@@ -1,14 +1,8 @@
 package com.example.demo.core.service.Produto;
 
-import com.example.demo.core.domain.entities.Categoria;
-import com.example.demo.core.domain.entities.Fornecedor;
-import com.example.demo.core.domain.entities.Marca;
-import com.example.demo.core.domain.entities.Produto;
+import com.example.demo.core.domain.entities.*;
 import com.example.demo.core.domain.usecase.Produto.EditarProdutoUseCase;
-import com.example.demo.infra.port.CategoriaRepository;
-import com.example.demo.infra.port.FornecedorRepository;
-import com.example.demo.infra.port.MarcaRepository;
-import com.example.demo.infra.port.ProdutoRepository;
+import com.example.demo.infra.port.*;
 import com.example.demo.presenters.Dtos.ProdutoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +21,9 @@ public class EditarProdutoService implements EditarProdutoUseCase {
     @Autowired
     MarcaRepository marcaRepository;
 
+    @Autowired
+    EstoqueRepository estoqueRepository;
+
     public void editarProduto(ProdutoDto produtoDto) {
         Produto produto = produtoRepository.findByCodigoEAN13(produtoDto.codigoEAN_13());
 
@@ -36,6 +33,8 @@ public class EditarProdutoService implements EditarProdutoUseCase {
             String preco = produtoDto.preco();
             String nome_fornecedor = produtoDto.nome_fornecedor();
             String nome_marca = produtoDto.nome_marca();
+            String qtdMin = produtoDto.qtdMin();
+            String qtdAtual = produtoDto.qtdAtual();
 
             if(!nome.isEmpty()) produto.setNome(nome);
             if(!preco.isEmpty()) produto.setPreco(preco);
@@ -51,6 +50,18 @@ public class EditarProdutoService implements EditarProdutoUseCase {
                 Marca marca = marcaRepository.findByNome(nome_marca);
                 produto.setMarca(marca);
             }
+
+            Estoque estoque = estoqueRepository.findByProduto(produto);
+
+            if(estoque != null){
+                if(!qtdMin.isEmpty()){
+                    estoque.setQtdMin(qtdMin);
+                }
+                if(!qtdAtual.isEmpty()){
+                    estoque.setQtdAtual(qtdAtual);
+                }
+            }
+
 
             produtoRepository.save(produto);
         }else{

@@ -154,16 +154,18 @@ VALUES
    (SELECT id FROM tb_marca WHERE nome_da_marca = 'NaturePet'), NOW(), NOW() 
    );
 
+SELECT * FROM tb_produto
+
 INSERT INTO tb_estoque VALUES
-(gen_random_uuid(), '65','100', '15', '264506b9-2cab-4a45-a633-3dbb6a616472', NOW(), NOW()),
-(gen_random_uuid(), '50', '70', '10','fc138984-11d8-4a4f-a4ac-ba54a65c3e3f', NOW(), NOW()),
-(gen_random_uuid(), '45', '100', '15', 'e3103adf-4b45-4656-8708-4ce4402ec51a', NOW(), NOW()),
-(gen_random_uuid(), '40', '55', '5','b4965819-96fb-4760-a10f-3524aa2a6e27', NOW(), NOW()),
-(gen_random_uuid(), '70', '100', '10', '4824c893-8bce-4c80-86ef-334dedb345e9', NOW(), NOW()),
-(gen_random_uuid(), '55', '60', '15', 'b43f58b0-72ab-43b5-88b7-bc4fddd21549', NOW(), NOW()),
-(gen_random_uuid(), '55', '55', '5','f05a3770-bedf-4692-87f3-b1e4747974ad', NOW(), NOW()),
-(gen_random_uuid(), '20', '40', '5', 'e535ab7c-a920-4d01-8865-be353c8d8464', NOW(), NOW()),
-(gen_random_uuid(), '40', '100', '15', '7a241441-7650-4a00-a3ea-35ca7b7540e5', NOW(), NOW()),
-(gen_random_uuid(), '50', '70', '15', '8117e09c-823e-4f64-88da-71408341d55b', NOW(), NOW()),
-(gen_random_uuid(), '30', '80', '5', '8bbeba3b-612d-4d0a-8b5f-fe97db0692af', NOW(), NOW());
+(gen_random_uuid(), '65','100', '15', '4111b11f-de2a-4cb3-9cb7-73c6a039ce35', NOW(), NOW()),
+(gen_random_uuid(), '50', '70', '10','6a995931-5c38-4651-8ffd-5cdea0128652', NOW(), NOW()),
+(gen_random_uuid(), '45', '100', '15', 'a495780a-148e-41ab-8c84-e3b07a8247a5', NOW(), NOW()),
+(gen_random_uuid(), '40', '55', '5','c6b806c7-ff2c-42c6-bb55-57f7923d9c2e', NOW(), NOW()),
+(gen_random_uuid(), '70', '100', '10', '651bd221-16f6-432f-b834-1ce519336457', NOW(), NOW()),
+(gen_random_uuid(), '55', '60', '15', '8690ed7c-0bf3-4e15-b9b4-0037d6a1bf49', NOW(), NOW()),
+(gen_random_uuid(), '55', '55', '5','5ee566c4-8c20-4d87-abd5-75daa406b790', NOW(), NOW()),
+(gen_random_uuid(), '20', '40', '5', 'dbe8f8cc-0e36-4082-b631-a5798eeb2867', NOW(), NOW()),
+(gen_random_uuid(), '40', '100', '15', '1f4f61b5-fc72-42c3-8e45-dcddac696bb7', NOW(), NOW()),
+(gen_random_uuid(), '50', '70', '15', '83c81627-28a9-407e-abe9-7cd9019c8b1d', NOW(), NOW()),
+(gen_random_uuid(), '30', '80', '5', 'c65349d1-7002-41ee-a44f-894f3a8cfff7', NOW(), NOW());
 
