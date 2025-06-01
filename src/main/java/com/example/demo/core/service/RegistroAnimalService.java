@@ -19,8 +19,6 @@ public class RegistroAnimalService implements RegistroDeAnimalUsecase {
     AnimalRepository animalRepository;
 
     public void registroAnimal(AnimalDto animalDto){
-        Animal animal = new Animal();
-
         Boolean temNulo = Utils.hasNullField(animalDto);
 
         if(temNulo == true){
@@ -29,23 +27,21 @@ public class RegistroAnimalService implements RegistroDeAnimalUsecase {
             System.out.println("Animal ja registrado");
         }
         else{
+            Animal animal = new Animal();
             animal.setCpf(animalDto.cpf_dono());
             animal.setIdade(animalDto.idade());
-            animal.setPorte(animalDto.porte());
+            animal.setPeso(animalDto.peso());
             animal.setNome(animalDto.nome_do_animal());
             animal.setTipo(animalDto.tipo());
+            animal.setTelefone(animalDto.telefone());
 
             animalRepository.save(animal);
         }
-
 
     }
 
     public Boolean existeAnimal(String nome, String cpf){
         return animalRepository.existsByCpfAndNome(cpf,nome);
-
     }
-
-
 
 }
