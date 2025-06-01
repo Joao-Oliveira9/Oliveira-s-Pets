@@ -4,5 +4,5 @@ import com.example.demo.presenters.Dtos.AnimalDto;
 
 public interface RegistroDeAnimalUsecase {
     public void registroAnimal(AnimalDto animalDto);
-    public void existeAnimal();
+    public Boolean existeAnimal(String nome_do_animal, String cpf_dono);
 }

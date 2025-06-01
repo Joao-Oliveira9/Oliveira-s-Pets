@@ -24,8 +24,11 @@ public class Animal {
     @Column(name = "tipo",nullable = false)
     private String tipo;
 
-    @Column(name = "porte",nullable = false)
-    private String porte;
+    @Column(name = "telefone",nullable = false)
+    private String telefone;
+
+    @Column(name = "peso",nullable = false)
+    private String peso;
 
     @Column(name = "cpf",nullable = false)
     private String cpf;
@@ -78,20 +81,28 @@ public class Animal {
         this.tipo = tipo;
     }
 
-    public String getPorte() {
-        return porte;
-    }
-
-    public void setPorte(String porte) {
-        this.porte = porte;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getIdade() {
