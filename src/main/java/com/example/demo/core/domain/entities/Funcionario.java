@@ -1,7 +1,10 @@
 package com.example.demo.core.domain.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -12,17 +15,25 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "nome_do_funcionario",nullable = false)
+    @Column(name = "Nome",nullable = false)
     private String nome;
 
-    @Column(name = "cpf",nullable = false)
+    @Column(name = "CPF",nullable = false)
     private String cpf;
 
-    @Column(name = "email",nullable = false)
+    @Column(name = "Email",nullable = false)
     private String email;
 
-    @Column(name = "telefone",nullable = false)
+    @Column(name = "Telefone",nullable = false)
     private String telefone;
+
+    @CreationTimestamp
+    @Column(name = "created_at",updatable = false)
+    private LocalDateTime created_at;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime update_at;
 
     public UUID getId() {
         return id;
@@ -32,20 +43,28 @@ public class Funcionario {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public LocalDateTime getUpdate_at() {
+        return update_at;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUpdate_at(LocalDateTime update_at) {
+        this.update_at = update_at;
     }
 
-    public String getCpf() {
-        return cpf;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getEmail() {
@@ -56,11 +75,19 @@ public class Funcionario {
         this.email = email;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }
