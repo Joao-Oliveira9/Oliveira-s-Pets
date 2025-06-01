@@ -3,7 +3,6 @@ package com.example.demo.core.service;
 import com.example.demo.core.domain.entities.Animal;
 import com.example.demo.core.domain.usecase.ListaAnimalUseCase;
 import com.example.demo.infra.port.AnimalRepository;
-import com.example.demo.presenters.Dtos.AnimalDto;
 import com.example.demo.presenters.Dtos.AnimalUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

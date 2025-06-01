@@ -1,16 +1,11 @@
 package com.example.demo.core.service;
 
-import com.example.demo.Utils;
 import com.example.demo.core.domain.entities.Animal;
 import com.example.demo.core.domain.usecase.UpdateAnimalUseCase;
 import com.example.demo.infra.port.AnimalRepository;
-import com.example.demo.presenters.Dtos.AnimalDeleteDto;
-import com.example.demo.presenters.Dtos.AnimalDto;
 import com.example.demo.presenters.Dtos.AnimalUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UpdateAnimalService implements UpdateAnimalUseCase {

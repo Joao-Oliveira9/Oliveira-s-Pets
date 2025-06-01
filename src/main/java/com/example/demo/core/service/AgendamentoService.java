@@ -1,10 +1,12 @@
 package com.example.demo.core.service;
 
+import com.example.demo.core.domain.entities.Animal;
 import com.example.demo.core.domain.entities.Funcionario;
 import com.example.demo.core.domain.entities.Horario;
 import com.example.demo.core.domain.entities.Servico;
 import com.example.demo.core.domain.usecase.AgendamentoHorarioUsecase;
 import com.example.demo.infra.port.AgendamentoRepository;
+import com.example.demo.infra.port.AnimalRepository;
 import com.example.demo.infra.port.FuncionarioRepository;
 import com.example.demo.infra.port.ServicoRepository;
 import com.example.demo.presenters.Dtos.HorarioDto;
@@ -39,7 +41,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
         //if(funcionario==null){throw new Exception()} exceção nao tem funcionario
         Animal animal = animalRepository.findByNomeAndTelefone(horarioDto.nome(),horarioDto.telefone());
         //if(animal==null){throw new Exception()} exceção nao tem animal
-        Servico servico = servicoRepository.findByTipo_servico(horarioDto.servico());
+        Servico servico = servicoRepository.findByTipoServico(horarioDto.servico());
         //if(servico==null){throw new Exception()} exceção nao tem servico
         LocalDateTime data = LocalDateTime.parse(horarioDto.data());
 
@@ -61,7 +63,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
     }
 
     private boolean horarioDisponivel(UUID funcionario, LocalDateTime data){
-        if(agendamentoRepository.findById_funcionarioAndDataAndStatus(funcionario,data, "Pendente")==null){
+        if(agendamentoRepository.findByIdFuncionarioAndDataAndStatus(funcionario,data, "Pendente")==null){
             return true;
         }
         return false;
@@ -110,7 +112,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
         Funcionario funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
         //if(funcionario==null){throw new Exception()} exceção nao tem funcionario
         LocalDateTime data = LocalDateTime.parse(horarioDto.data());
-        Horario horario = agendamentoRepository.findById_funcionarioAndDataAndStatus(funcionario.getId(),data,"Pendente");
+        Horario horario = agendamentoRepository.findByIdFuncionarioAndDataAndStatus(funcionario.getId(),data,"Pendente");
         if(horario!=null){
             horario.setStatus("Cancelado");
             agendamentoRepository.save(horario);
@@ -138,7 +140,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
                         horario.setId_funcionario(funcionario.getId());
                     }
                     if(horarioDto.servico()!=null){
-                        Servico servico = servicoRepository.findByTipo_servico(horarioDto.servico());
+                        Servico servico = servicoRepository.findByTipoServico(horarioDto.servico());
                         horario.setId_servico(servico.getId());
                     }
 

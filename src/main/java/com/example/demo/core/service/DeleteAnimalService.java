@@ -4,7 +4,6 @@ import com.example.demo.core.domain.entities.Animal;
 import com.example.demo.core.domain.usecase.DeleteAnimalUseCase;
 import com.example.demo.infra.port.AnimalRepository;
 import com.example.demo.presenters.Dtos.AnimalDeleteDto;
-import com.example.demo.presenters.Dtos.AnimalDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

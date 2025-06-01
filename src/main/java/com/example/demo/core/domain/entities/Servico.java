@@ -13,7 +13,7 @@ public class Servico {
     private UUID id;
 
     @Column(name = "tipo_servico",nullable = false)
-    private String tipo_servico;
+    private String tipoServico;
 
     @Column(name = "valor",nullable = false)
     private Float valor;
@@ -27,11 +27,11 @@ public class Servico {
     }
 
     public String getTipo_servico() {
-        return tipo_servico;
+        return tipoServico;
     }
 
     public void setTipo_servico(String tipo_servico) {
-        this.tipo_servico = tipo_servico;
+        this.tipoServico = tipo_servico;
     }
 
     public Float getValor() {

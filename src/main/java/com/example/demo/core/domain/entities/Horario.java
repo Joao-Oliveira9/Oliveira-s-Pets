@@ -16,7 +16,7 @@ public class Horario {
     private UUID id;
 
     @Column(name = "id_pet",nullable = false)
-    private UUID id_pet;
+    private UUID idPet;
 
     @Column(name="telefone_do_dono",nullable = false)
     private String telefone;
@@ -25,10 +25,10 @@ public class Horario {
     private LocalDateTime data;
 
     @Column(name = "id_funcionario",nullable = false)
-    private UUID id_funcionario;
+    private UUID idFuncionario;
 
     @Column(name = "id_servico",nullable = false)
-    private UUID id_servico;
+    private UUID idServico;
 
     @Column(name = "status",nullable = false)
     private String status;
@@ -50,11 +50,11 @@ public class Horario {
     }
 
     public UUID getId_pet() {
-        return id_pet;
+        return idPet;
     }
 
     public void setId_pet(UUID id_pet) {
-        this.id_pet = id_pet;
+        this.idPet = id_pet;
     }
 
     public String getTelefone() {
@@ -66,11 +66,11 @@ public class Horario {
     }
 
     public UUID getId_funcionario() {
-        return id_funcionario;
+        return idFuncionario;
     }
 
     public void setId_funcionario(UUID id_funcionario) {
-        this.id_funcionario = id_funcionario;
+        this.idFuncionario = id_funcionario;
     }
 
     public LocalDateTime getData() {
@@ -82,11 +82,11 @@ public class Horario {
     }
 
     public UUID getId_servico() {
-        return id_servico;
+        return idServico;
     }
 
     public void setId_servico(UUID id_servico) {
-        this.id_servico = id_servico;
+        this.idServico = id_servico;
     }
 
     public String getStatus() {

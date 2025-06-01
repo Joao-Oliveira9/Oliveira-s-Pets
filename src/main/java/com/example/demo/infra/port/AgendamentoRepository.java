@@ -10,5 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Horario, UUID> {
-    Horario findById_funcionarioAndDataAndStatus(UUID funcionario, LocalDateTime data, String status);
+    Horario findByIdFuncionarioAndDataAndStatus(UUID funcionario, LocalDateTime data, String status);
 }

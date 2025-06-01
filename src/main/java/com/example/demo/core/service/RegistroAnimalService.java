@@ -5,12 +5,8 @@ import com.example.demo.core.domain.entities.Animal;
 import com.example.demo.core.domain.usecase.RegistroDeAnimalUsecase;
 import com.example.demo.infra.port.AnimalRepository;
 import com.example.demo.presenters.Dtos.AnimalDto;
-import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.swing.text.StyledEditorKit;
-import java.lang.reflect.Field;
 
 @Service
 public class RegistroAnimalService implements RegistroDeAnimalUsecase {
