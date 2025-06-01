@@ -1,4 +1,4 @@
-package com.example.demo.presenters;
+package com.example.demo.presenters.controllers;
 
 import com.example.demo.core.domain.usecase.RegistroDeAnimalUsecase;
 import com.example.demo.presenters.Dtos.AnimalDto;
