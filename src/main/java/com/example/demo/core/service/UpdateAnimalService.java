@@ -42,9 +42,8 @@ public class UpdateAnimalService implements UpdateAnimalUseCase {
                 }  if (animalDto.peso()!=null) {
                     System.out.println("passei aqui");
                     animal.setPeso(animalDto.peso());
-                }  if (animalDto.idade()!=null) {
-                    animal.setIdade(animalDto.idade());
-                }  if (animalDto.nome_do_animal()!=null) {
+                }
+                  if (animalDto.nome_do_animal()!=null) {
                     animal.setNome(animalDto.nome_do_animal());
                 }
                 animalRepository.save(animal);
