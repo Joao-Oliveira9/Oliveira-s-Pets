@@ -20,13 +20,13 @@ public class Estoque {
     private Produto produto;
 
     @Column(name = "qtdMin", nullable = false)
-    private String qtdMin;
+    private Integer qtdMin;
 
     @Column(name = "qtdMax", nullable = false)
-    private String qtdMax;
+    private Integer qtdMax;
 
     @Column(name = "qtdAtual", nullable = false)
-    private String qtdAtual;
+    private Integer qtdAtual;
 
     @CreationTimestamp
     @Column(name = "created_at",updatable = false)
@@ -52,27 +52,27 @@ public class Estoque {
         this.produto = produto;
     }
 
-    public String getQtdMin() {
+    public Integer getQtdMin() {
         return qtdMin;
     }
 
-    public void setQtdMin(String qtdMin) {
+    public void setQtdMin(Integer qtdMin) {
         this.qtdMin = qtdMin;
     }
 
-    public String getQtdMax() {
+    public Integer getQtdMax() {
         return qtdMax;
     }
 
-    public void setQtdMax(String qtdMax) {
+    public void setQtdMax(Integer qtdMax) {
         this.qtdMax = qtdMax;
     }
 
-    public String getQtdAtual() {
+    public Integer getQtdAtual() {
         return qtdAtual;
     }
 
-    public void setQtdAtual(String qtdAtual) {
+    public void setQtdAtual(Integer qtdAtual) {
         this.qtdAtual = qtdAtual;
     }
 }

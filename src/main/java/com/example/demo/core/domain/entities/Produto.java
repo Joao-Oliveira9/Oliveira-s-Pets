@@ -19,7 +19,7 @@ public class Produto {
     private String nome;
 
     @Column(name = "preco", nullable = false)
-    private String preco;
+    private Double preco;
 
     @ManyToOne
     @JoinColumn(name = "categoria", nullable = false)
@@ -60,11 +60,11 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(String preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 

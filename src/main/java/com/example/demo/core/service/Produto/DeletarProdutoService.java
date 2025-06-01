@@ -21,8 +21,14 @@ public class DeletarProdutoService implements DeletarProdutosUseCase {
         Produto produto = produtoRepository.findByCodigoEAN13(codigoEAN_13);
         Estoque estoque = estoqueRepository.findByProduto(produto);
 
-        System.out.println(produto.getId());
-        estoqueRepository.delete(estoque);
-        produtoRepository.delete(produto);
+        if(produto != null && estoque != null){
+            System.out.println(produto.getId());
+            estoqueRepository.delete(estoque);
+            produtoRepository.delete(produto);
+        } else {
+            System.out.println("Esse produto nn existe");
+            throw new Error("Esse produto nn existe");
+        }
+
     }
 }

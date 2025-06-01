@@ -29,6 +29,11 @@ public class RegistroProdutoService implements RegistroDeProdutoUsecase {
         Produto produto = new Produto();
         Estoque estoque = new Estoque();
 
+        if (produtoRepository.findByCodigoEAN13(produtoDto.codigoEAN_13()) != null) {
+            System.out.println("Já existe esse produto!!");
+            throw new Error("Já existe esse produto!!");
+        }
+
         System.out.println("Categoria: " + produtoDto.nome_categoria());
         Categoria categoria = categoriaRepository.findByNome(produtoDto.nome_categoria());
 
@@ -37,22 +42,18 @@ public class RegistroProdutoService implements RegistroDeProdutoUsecase {
         Fornecedor fornecedor = fornecedorRepository.findByNome(produtoDto.nome_fornecedor());
 
         produto.setNome(produtoDto.nome_do_produto());
-        produto.setPreco(produtoDto.preco());
+        produto.setPreco(Double.parseDouble(produtoDto.preco()));
         produto.setCategoria(categoria);
         produto.setMarca(marca);
         produto.setFornecedor(fornecedor);
         produto.setCodigoEAN_13(produtoDto.codigoEAN_13());
 
         estoque.setProduto(produto);
-        estoque.setQtdAtual(produtoDto.qtdAtual());
-        estoque.setQtdMin(produtoDto.qtdMin());
-        estoque.setQtdMax(produtoDto.qtdMax());
+        estoque.setQtdAtual(Integer.parseInt(produtoDto.qtdAtual()));
+        estoque.setQtdMin(Integer.parseInt(produtoDto.qtdMin()));
+        estoque.setQtdMax(Integer.parseInt(produtoDto.qtdMax()));
 
         produtoRepository.save(produto);
         estoqueRepository.save(estoque);
-    }
-
-    public void editarProduto(ProdutoDto produtoDto) {
-
     }
 }

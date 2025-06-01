@@ -34,8 +34,8 @@ public class MostrarProdutosService implements MostrarProdutosUseCase {
             System.out.println("Categoria: " + p.getNomeDaCategoria());
             System.out.println("Fornecedor: " + p.getNomeDoFornecedor());
             System.out.println("Marca: " + p.getNomeDaMarca());
-            System.out.println("QtdMin: " + p.getQtdMin());
-            System.out.println("QtdAtual: " + p.getQtdAtual());
+            System.out.println("QtdMin: " + p.getQtdMin() + "");
+            System.out.println("QtdAtual: " + p.getQtdAtual() + "");
         }
 
         return produtos;

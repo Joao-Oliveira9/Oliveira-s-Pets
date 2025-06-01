@@ -3,14 +3,14 @@ package com.example.demo.presenters.Dtos;
 public class MostrarProdutos {
     private String nomeDoProduto;
     private String codigoEan13;
-    private String preco;
+    private Double preco;
     private String nomeDaCategoria;
     private String nomeDoFornecedor;
     private String nomeDaMarca;
-    private String qtdMin;
-    private String qtdAtual;
+    private Integer qtdMin;
+    private Integer qtdAtual;
 
-    public MostrarProdutos(String nomeDoProduto, String codigoEan13, String preco, String nomeDaCategoria, String nomeDoFornecedor, String nomeDaMarca, String qtdMin, String qtdAtual) {
+    public MostrarProdutos(String nomeDoProduto, String codigoEan13, Double preco, String nomeDaCategoria, String nomeDoFornecedor, String nomeDaMarca, Integer qtdMin, Integer qtdAtual) {
         this.nomeDoProduto = nomeDoProduto;
         this.codigoEan13 = codigoEan13;
         this.preco = preco;
@@ -37,11 +37,11 @@ public class MostrarProdutos {
         this.codigoEan13 = codigoEan13;
     }
 
-    public String getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(String preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 
@@ -69,19 +69,19 @@ public class MostrarProdutos {
         this.nomeDaMarca = nomeDaMarca;
     }
 
-    public String getQtdMin() {
+    public Integer getQtdMin() {
         return qtdMin;
     }
 
-    public void setQtdMin(String qtdMin) {
+    public void setQtdMin(Integer qtdMin) {
         this.qtdMin = qtdMin;
     }
 
-    public String getQtdAtual() {
+    public Integer getQtdAtual() {
         return qtdAtual;
     }
 
-    public void setQtdAtual(String qtdAtual) {
+    public void setQtdAtual(Integer qtdAtual) {
         this.qtdAtual = qtdAtual;
     }
 }

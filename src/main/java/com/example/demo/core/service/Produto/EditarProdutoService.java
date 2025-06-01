@@ -37,7 +37,7 @@ public class EditarProdutoService implements EditarProdutoUseCase {
             String qtdAtual = produtoDto.qtdAtual();
 
             if(!nome.isEmpty()) produto.setNome(nome);
-            if(!preco.isEmpty()) produto.setPreco(preco);
+            if(!preco.isEmpty()) produto.setPreco(Double.parseDouble(preco));
             if(!nome_categoria.isEmpty()) {
                 Categoria categoria = categoriaRepository.findByNome(nome_categoria);
                 produto.setCategoria(categoria);
@@ -55,15 +55,15 @@ public class EditarProdutoService implements EditarProdutoUseCase {
 
             if(estoque != null){
                 if(!qtdMin.isEmpty()){
-                    estoque.setQtdMin(qtdMin);
+                    estoque.setQtdMin(Integer.parseInt(qtdMin));
                 }
                 if(!qtdAtual.isEmpty()){
-                    estoque.setQtdAtual(qtdAtual);
+                    estoque.setQtdAtual(Integer.parseInt(qtdAtual));
                 }
             }
 
-
             produtoRepository.save(produto);
+
         }else{
             //Produto nn encontrado
             System.out.println("Produto nn encontrado");

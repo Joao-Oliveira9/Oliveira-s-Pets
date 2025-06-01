@@ -35,23 +35,27 @@ INSERT INTO tb_marca VALUES (gen_random_uuid(), 'PetLuxo');
 INSERT INTO tb_produto 
 VALUES 
   (gen_random_uuid(), 
-   '22222', 
+   '22222',
+    NOW(),
    'Brinquedo de Corda',
-   '30',
+   30,
+   NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Brinquedos'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'Brinquedos Pets Ltda'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetPlay'), NOW(), NOW()
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetPlay')
    );
 
 INSERT INTO tb_produto 
 VALUES 
   (gen_random_uuid(),
    '33333',
+   NOW(),
    'Shampoo para Pets', 
-   '40', 
+   40, 
+   NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Higiene'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'VetPharma Indústria'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'AnimalCare'), NOW(), NOW()
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'AnimalCare')
    );
 
 
@@ -59,113 +63,127 @@ INSERT INTO tb_produto
 VALUES 
   (gen_random_uuid(), 
    '44444',
+   NOW(),
    'Caminha Confortável', 
-   '120', 
+   120, 
+   NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Acessórios'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'Mundo Pet Importações'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetPrime'), NOW(), NOW()
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetPrime')
    );
 
 INSERT INTO tb_produto 
 VALUES 
   (gen_random_uuid(), 
    '55555',
+   NOW(),
    'Ração para Cães', 
-   '90', 
+   90, 
+   NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Alimentos'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'Amigos do Bicho Distribuidora'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetLuxo'), NOW(), NOW()
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetLuxo')
    );
 
 INSERT INTO tb_produto 
 VALUES 
   (gen_random_uuid(), 
    '66666',
+   NOW(),
    'Alimento Natural', 
-   '75', 
+   75, 
+   NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Alimentos'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'EcoPet Sustentável'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'VetPlus'), NOW(), NOW()
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'VetPlus')
    );
 
 INSERT INTO tb_produto 
 VALUES 
   (gen_random_uuid(), 
    '77777',
+   NOW(),
    'Coleira Antirrábica', 
-   '50', 
+   50, 
+   NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Acessórios'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'Distribuidora PetNobre'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'ZooVida'), NOW(), NOW()
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'ZooVida')
    );
 
-INSERT INTO tb_produto 
+INSERT INTO tb_produto
 VALUES 
   (gen_random_uuid(), 
    '88888',
+    NOW(),
    'Vacina Antirrábica', 
-   '130', 
+   130, 
+   NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Medicamentos'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'Top Rações Brasil'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetHappy'), NOW(), NOW()
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetHappy')
    );
 
 INSERT INTO tb_produto 
 VALUES 
   (gen_random_uuid(), 
    '99999',
+    NOW(),
    'Ração para Gatos', 
-   '110', 
+   110, 
+   NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Alimentos'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'PetLovers Atacado'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetPlay'), NOW(), NOW() 
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetPlay')
    );
 
 INSERT INTO tb_produto 
 VALUES 
   (gen_random_uuid(),
-   '10101',
+   '10101', NOW(),
    'Suplemento Nutricional', 
-   '65', 
+   65.5, NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Medicamentos'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'Farmapet Soluções Veterinárias'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'BichoChic'), NOW(), NOW()
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'BichoChic')
    );
 
 INSERT INTO tb_produto 
 VALUES 
   (gen_random_uuid(), 
    '12121',
+   NOW(),
    'Brinquedo de Pelúcia', 
-   '40', 
+   40, NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Brinquedos'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'Peludinhos Imports'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'DogBem'), NOW(), NOW() 
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'DogBem')
    );
 
 INSERT INTO tb_produto 
 VALUES 
   (gen_random_uuid(), 
    '13131',
+   NOW(),
    'Cama para Cães', 
-   '150', 
+   150, NOW(),
    (SELECT id FROM tb_categoria WHERE nome_da_categoria = 'Acessórios'), 
    (SELECT id FROM tb_fornecedor WHERE nome_do_fornecedor = 'Dog&Cat Suprimentos'), 
-   (SELECT id FROM tb_marca WHERE nome_da_marca = 'NaturePet'), NOW(), NOW() 
+   (SELECT id FROM tb_marca WHERE nome_da_marca = 'NaturePet')
    );
 
-SELECT * FROM tb_produto
+SELECT * FROM tb_estoque;
 
 INSERT INTO tb_estoque VALUES
-(gen_random_uuid(), '65','100', '15', '4111b11f-de2a-4cb3-9cb7-73c6a039ce35', NOW(), NOW()),
-(gen_random_uuid(), '50', '70', '10','6a995931-5c38-4651-8ffd-5cdea0128652', NOW(), NOW()),
-(gen_random_uuid(), '45', '100', '15', 'a495780a-148e-41ab-8c84-e3b07a8247a5', NOW(), NOW()),
-(gen_random_uuid(), '40', '55', '5','c6b806c7-ff2c-42c6-bb55-57f7923d9c2e', NOW(), NOW()),
-(gen_random_uuid(), '70', '100', '10', '651bd221-16f6-432f-b834-1ce519336457', NOW(), NOW()),
-(gen_random_uuid(), '55', '60', '15', '8690ed7c-0bf3-4e15-b9b4-0037d6a1bf49', NOW(), NOW()),
-(gen_random_uuid(), '55', '55', '5','5ee566c4-8c20-4d87-abd5-75daa406b790', NOW(), NOW()),
-(gen_random_uuid(), '20', '40', '5', 'dbe8f8cc-0e36-4082-b631-a5798eeb2867', NOW(), NOW()),
-(gen_random_uuid(), '40', '100', '15', '1f4f61b5-fc72-42c3-8e45-dcddac696bb7', NOW(), NOW()),
-(gen_random_uuid(), '50', '70', '15', '83c81627-28a9-407e-abe9-7cd9019c8b1d', NOW(), NOW()),
-(gen_random_uuid(), '30', '80', '5', 'c65349d1-7002-41ee-a44f-894f3a8cfff7', NOW(), NOW());
+(gen_random_uuid(), now(), 65, 100, 15,  NOW(), (SELECT id FROM tb_produto where codigoean_13 = '22222')),
+(gen_random_uuid(), NOW(), 50, 70, 10, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '33333')),
+(gen_random_uuid(), NOW(), 45, 100, 15, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '44444')),
+(gen_random_uuid(), NOW(), 40, 55, 5, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '55555')),
+(gen_random_uuid(), NOW(), 70, 100, 10, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '66666')),
+(gen_random_uuid(), NOW(), 55, 60, 15, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '77777')),
+(gen_random_uuid(), NOW(), 55, 55, 5, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '88888')),
+(gen_random_uuid(), NOW(), 20, 40, 5, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '99999')),
+(gen_random_uuid(), NOW(), 40, 100, 15, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '10101')),
+(gen_random_uuid(), NOW(), 50, 70, 15, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '12121')),
+(gen_random_uuid(), NOW(), 30, 80, 5, NOW(), (SELECT id FROM tb_produto where codigoean_13 = '13131'));
 
