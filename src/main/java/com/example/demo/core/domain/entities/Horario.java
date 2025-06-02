@@ -16,7 +16,7 @@ public class Horario {
     private UUID id;
 
     @Column(name = "id_pet",nullable = false)
-    private UUID idPet;
+    private Animal animal;
 
     @Column(name="telefone_do_dono",nullable = false)
     private String telefone;
@@ -25,10 +25,10 @@ public class Horario {
     private LocalDateTime data;
 
     @Column(name = "id_funcionario",nullable = false)
-    private UUID idFuncionario;
+    private Funcionario funcionario;
 
     @Column(name = "id_servico",nullable = false)
-    private UUID idServico;
+    private Servico servico;
 
     @Column(name = "status",nullable = false)
     private String status;
@@ -49,12 +49,12 @@ public class Horario {
         this.id = id;
     }
 
-    public UUID getId_pet() {
-        return idPet;
+    public Animal getAnimal() {
+        return animal;
     }
 
-    public void setId_pet(UUID id_pet) {
-        this.idPet = id_pet;
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     public String getTelefone() {
@@ -65,14 +65,6 @@ public class Horario {
         this.telefone = telefone;
     }
 
-    public UUID getId_funcionario() {
-        return idFuncionario;
-    }
-
-    public void setId_funcionario(UUID id_funcionario) {
-        this.idFuncionario = id_funcionario;
-    }
-
     public LocalDateTime getData() {
         return data;
     }
@@ -81,12 +73,20 @@ public class Horario {
         this.data = data;
     }
 
-    public UUID getId_servico() {
-        return idServico;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setId_servico(UUID id_servico) {
-        this.idServico = id_servico;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
     }
 
     public String getStatus() {

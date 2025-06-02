@@ -1,5 +1,6 @@
 package com.example.demo.infra.port;
 
+import com.example.demo.core.domain.entities.Funcionario;
 import com.example.demo.core.domain.entities.Horario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,5 +11,5 @@ import java.util.Optional;
 
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Horario, UUID> {
-    Horario findByIdFuncionarioAndDataAndStatus(UUID funcionario, LocalDateTime data, String status);
+    Horario findByFuncionarioAndDataAndStatus(Funcionario funcionario, LocalDateTime data, String status);
 }
