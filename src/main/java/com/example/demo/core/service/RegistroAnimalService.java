@@ -3,6 +3,7 @@ package com.example.demo.core.service;
 import com.example.demo.Utils;
 import com.example.demo.core.domain.entities.Animal;
 import com.example.demo.core.domain.usecase.RegistroDeAnimalUsecase;
+import com.example.demo.exceptions.AnimalNotFoundException;
 import com.example.demo.infra.port.AnimalRepository;
 import com.example.demo.presenters.Dtos.AnimalDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class RegistroAnimalService implements RegistroDeAnimalUsecase {
         Boolean temNulo = Utils.hasNullField(animalDto);
 
         if(temNulo == true){
-            System.out.println("Campo Vazio");
+            throw new AnimalNotFoundException("Campo vazio!1");
         } else if (existeAnimal(animalDto.nome_do_animal(),animalDto.cpf_dono()) == true) {
-            System.out.println("Animal ja registrado");
+            throw new AnimalNotFoundException("Já foi registrado");
         }
         else{
             Animal animal = new Animal();

@@ -3,6 +3,7 @@ package com.example.demo.core.service.Produto;
 import com.example.demo.core.domain.entities.Estoque;
 import com.example.demo.core.domain.entities.Produto;
 import com.example.demo.core.domain.usecase.Produto.DeletarProdutosUseCase;
+import com.example.demo.exceptions.ProdutoNotFoundException;
 import com.example.demo.infra.port.EstoqueRepository;
 import com.example.demo.infra.port.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,7 @@ public class DeletarProdutoService implements DeletarProdutosUseCase {
             estoqueRepository.delete(estoque);
             produtoRepository.delete(produto);
         } else {
-            System.out.println("Esse produto nn existe");
-            throw new Error("Esse produto nn existe");
+            throw new ProdutoNotFoundException("Nao foi possível encontrar o produto");
         }
 
     }

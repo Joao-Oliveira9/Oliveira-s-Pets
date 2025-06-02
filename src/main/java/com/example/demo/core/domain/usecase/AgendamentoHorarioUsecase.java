@@ -1,6 +1,5 @@
 package com.example.demo.core.domain.usecase;
 
-import com.example.demo.core.domain.entities.Horario;
 import com.example.demo.presenters.Dtos.HorarioDto;
 import com.example.demo.presenters.Dtos.ListHorariosDto;
 

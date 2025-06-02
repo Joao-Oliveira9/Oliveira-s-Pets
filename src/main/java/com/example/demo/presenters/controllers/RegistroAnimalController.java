@@ -1,4 +1,4 @@
-package com.example.demo.presenters;
+package com.example.demo.presenters.controllers;
 
 import com.example.demo.core.domain.usecase.DeleteAnimalUseCase;
 import com.example.demo.core.domain.usecase.ListaAnimalUseCase;
@@ -72,7 +72,7 @@ public class RegistroAnimalController {
     @PatchMapping(value = "/animais")
     public ResponseEntity<RestMessage> modificarInfoAnimalRequest(@RequestBody AnimalUpdateDto animalDto){
         RestMessage restMessage = new RestMessage();
-        restMessage.setMessage("animal cadastrado");
+        restMessage.setMessage("animal modificado");
 
         updateAnimalUseCase.updateRegistroAnimal(animalDto);
 

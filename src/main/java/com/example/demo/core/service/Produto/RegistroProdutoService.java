@@ -2,6 +2,7 @@ package com.example.demo.core.service.Produto;
 
 import com.example.demo.core.domain.entities.*;
 import com.example.demo.core.domain.usecase.Produto.RegistroDeProdutoUsecase;
+import com.example.demo.exceptions.ProdutoNotFoundException;
 import com.example.demo.infra.port.*;
 import com.example.demo.presenters.Dtos.ProdutoDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,7 @@ public class RegistroProdutoService implements RegistroDeProdutoUsecase {
         Estoque estoque = new Estoque();
 
         if (produtoRepository.findByCodigoEAN13(produtoDto.codigoEAN_13()) != null) {
-            System.out.println("Já existe esse produto!!");
-            throw new Error("Já existe esse produto!!");
+            throw new ProdutoNotFoundException("Já existe esse produto");
         }
 
         System.out.println("Categoria: " + produtoDto.nome_categoria());
@@ -40,6 +40,10 @@ public class RegistroProdutoService implements RegistroDeProdutoUsecase {
         System.out.println("Marca: " + produtoDto.nome_marca());
         Marca marca = marcaRepository.findByNome(produtoDto.nome_marca());
         Fornecedor fornecedor = fornecedorRepository.findByNome(produtoDto.nome_fornecedor());
+
+        if(categoria == null) throw new ProdutoNotFoundException("Não foi possível encontrar a categoria");
+        if(marca == null) throw new ProdutoNotFoundException("Não foi possível encontrar a marca");
+        if(fornecedor == null) throw new ProdutoNotFoundException("Não foi possível encontrar o fornecedor");
 
         produto.setNome(produtoDto.nome_do_produto());
         produto.setPreco(Double.parseDouble(produtoDto.preco()));
