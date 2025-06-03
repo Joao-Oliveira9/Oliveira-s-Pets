@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-import java.util.Optional;
 
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Horario, UUID> {
-    Horario findByFuncionarioAndDataAndStatus(Funcionario funcionario, LocalDateTime data, String status);
+    Horario findByFuncionarioAndDataHorarioAndStatus(Funcionario funcionario, LocalDateTime data, String status);
 }

@@ -15,21 +15,21 @@ public class Horario {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_animal",nullable = false)
     private Animal animal;
 
     @Column(name="telefone_do_dono",nullable = false)
     private String telefone;
 
-    @Column(name = "data",nullable = false)
-    private LocalDateTime data;
+    @Column(name = "data_horario",nullable = false)
+    private LocalDateTime dataHorario;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_funcionario",nullable = false)
     private Funcionario funcionario;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_servico",nullable = false)
     private Servico servico;
 
@@ -68,12 +68,12 @@ public class Horario {
         this.telefone = telefone;
     }
 
-    public LocalDateTime getData() {
-        return data;
+    public LocalDateTime getDataHorario() {
+        return dataHorario;
     }
 
-    public void setData(LocalDateTime data) {
-        this.data = data;
+    public void setData(LocalDateTime dataHorario) {
+        this.dataHorario = dataHorario;
     }
 
     public Funcionario getFuncionario() {

@@ -14,7 +14,6 @@ import com.example.demo.presenters.Dtos.ListHorariosDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +61,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
     }
 
     private boolean horarioDisponivel(Funcionario funcionario, LocalDateTime data){
-        if(agendamentoRepository.findByFuncionarioAndDataAndStatus(funcionario,data, "Pendente")==null){
+        if(agendamentoRepository.findByFuncionarioAndDataHorarioAndStatus(funcionario,data, "Pendente")==null){
             return true;
         }
         return false;
@@ -86,7 +85,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
                 nome_do_pet = animal.getNome();
                 telefone_do_dono = animal.getTelefone();
             }
-            String data = horario.getData().toString();
+            String data = horario.getDataHorario().toString();
             Funcionario funcionario = funcionarioRepository.findById(horario.getFuncionario().getId()).orElse(null);
             if(funcionario != null){
                 nome_do_funcionario = funcionario.getNome();
@@ -109,7 +108,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
         Funcionario funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
         //if(funcionario==null){throw new Exception()} exceção nao tem funcionario
         LocalDateTime data = LocalDateTime.parse(horarioDto.data());
-        Horario horario = agendamentoRepository.findByFuncionarioAndDataAndStatus(funcionario,data,"Pendente");
+        Horario horario = agendamentoRepository.findByFuncionarioAndDataHorarioAndStatus(funcionario,data,"Pendente");
         if(horario!=null){
             horario.setStatus("Cancelado");
             agendamentoRepository.save(horario);
@@ -145,7 +144,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
                                 break;
                             case 2:
                                 funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
-                                if(horarioDisponivel(funcionario,horario.getData())){
+                                if(horarioDisponivel(funcionario,horario.getDataHorario())){
                                     horario.setFuncionario(funcionario);
                                 }else throw new Error("Horario não disponivel");
                                 break;
