@@ -1,6 +1,6 @@
 package com.example.demo.presenters.controllers;
 
-import com.example.demo.core.domain.usecase.FuncionariosUsecase;
+import com.example.demo.core.domain.usecase.FuncionariosUseCase;
 import com.example.demo.presenters.response.RestMessageListaAgendamento;
 import com.example.demo.presenters.response.RestMessageListaFuncionarios;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FuncionariosController {
 
     @Autowired
-    FuncionariosUsecase funcionariosUsecase;
+    FuncionariosUseCase funcionariosUsecase;
 
     @GetMapping(value = "/mostrarFuncionarios")
     public ResponseEntity<RestMessageListaFuncionarios> getFuncionariosRequest(){

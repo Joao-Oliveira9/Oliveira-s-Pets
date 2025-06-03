@@ -5,6 +5,6 @@ import com.example.demo.presenters.Dtos.ListaServicosDto;
 
 import java.util.List;
 
-public interface ServicosUsecase {
+public interface ServicosUseCase {
     public List<ListaServicosDto> mostrarTodosServicos();
 }

@@ -15,7 +15,8 @@ public class Horario {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "id_pet",nullable = false)
+    @OneToOne
+    @JoinColumn(name = "id_animal",nullable = false)
     private Animal animal;
 
     @Column(name="telefone_do_dono",nullable = false)
@@ -24,10 +25,12 @@ public class Horario {
     @Column(name = "data",nullable = false)
     private LocalDateTime data;
 
-    @Column(name = "id_funcionario",nullable = false)
+    @OneToOne
+    @JoinColumn(name = "id_funcionario",nullable = false)
     private Funcionario funcionario;
 
-    @Column(name = "id_servico",nullable = false)
+    @OneToOne
+    @JoinColumn(name = "id_servico",nullable = false)
     private Servico servico;
 
     @Column(name = "status",nullable = false)
