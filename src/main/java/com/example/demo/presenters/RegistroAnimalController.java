@@ -7,6 +7,7 @@ import com.example.demo.core.domain.usecase.UpdateAnimalUseCase;
 import com.example.demo.presenters.Dtos.AnimalDeleteDto;
 import com.example.demo.presenters.Dtos.AnimalDto;
 import com.example.demo.presenters.Dtos.AnimalUpdateDto;
+import com.example.demo.presenters.Dtos.HorarioDto;
 import com.example.demo.presenters.response.RestMessage;
 import com.example.demo.presenters.response.RestMessageLista;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,4 +81,16 @@ public class RegistroAnimalController {
 
 
     }
+
+    @GetMapping(value = "/mostrarAnimalAgendamento")
+    public ResponseEntity<RestMessageLista> mostrarAnimalAgendamentoRequest(@RequestBody HorarioDto horarioDto){
+        RestMessageLista restMessage = new RestMessageLista();
+        restMessage.setAnimalAgendamentoDto(listaAnimalUseCase.mostrarAnimalAndTelefone(horarioDto));
+
+
+        return ResponseEntity.status(HttpStatus.OK).body(restMessage);
+
+
+    }
+
 }

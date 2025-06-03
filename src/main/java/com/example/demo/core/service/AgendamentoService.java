@@ -14,6 +14,7 @@ import com.example.demo.presenters.Dtos.ListHorariosDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,19 +39,16 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
 
     public String agendarHorario(HorarioDto horarioDto){
         Funcionario funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
-        //if(funcionario==null){throw new Exception()} exceção nao tem funcionario
         Animal animal = animalRepository.findByCpfAndNome(horarioDto.cpf(),horarioDto.nome());
-        //if(animal==null){throw new Exception()} exceção nao tem animal
+        if(animal==null){throw new Error("Animal não encontrado");}
         Servico servico = servicoRepository.findByTipoServico(horarioDto.servico());
-        //if(servico==null){throw new Exception()} exceção nao tem servico
-        Cliente cliente = clienteRepository.findByCpf(horarioDto.cpf());
         LocalDateTime data = LocalDateTime.parse(horarioDto.data());
 
         if(horarioDisponivel(funcionario, data)){
             Horario horario = new Horario();
 
             horario.setAnimal(animal);
-            horario.setTelefone(cliente.getTelefone());
+            horario.setTelefone(animal.getTelefone());
             horario.setData(data);
             horario.setFuncionario(funcionario);
             horario.setServico(servico);
@@ -58,7 +56,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
 
             agendamentoRepository.save(horario);
             resposta = "agendamento realizado";
-        }else resposta = "horário indisponível";
+        }else throw new Error("Horario não disponivel");
 
         return resposta;
     }
@@ -86,8 +84,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
             Animal animal = animalRepository.findById(horario.getAnimal().getId()).orElse(null);
             if(animal != null){
                 nome_do_pet = animal.getNome();
-                Cliente cliente = clienteRepository.findByCpf(animal.getCpf());
-                telefone_do_dono = cliente.getTelefone();
+                telefone_do_dono = animal.getTelefone();
             }
             String data = horario.getData().toString();
             Funcionario funcionario = funcionarioRepository.findById(horario.getFuncionario().getId()).orElse(null);
@@ -108,8 +105,6 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
         return listaDto;
     }
 
-
-
     public String cancelarAgendamento(HorarioDto horarioDto) {
         Funcionario funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
         //if(funcionario==null){throw new Exception()} exceção nao tem funcionario
@@ -119,7 +114,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
             horario.setStatus("Cancelado");
             agendamentoRepository.save(horario);
             resposta = "agendamento cancelado";
-        }else resposta = "nenhum horario agendado";
+        }else throw new Error("Nenhum agendamento encontrado");
 
         return resposta;
     }
@@ -131,28 +126,60 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
             if(horarioDto.id() != null){
                 UUID id = UUID.fromString(horarioDto.id());
                 horario = agendamentoRepository.findById(id).orElse(null);
+                LocalDateTime data;
+                Funcionario funcionario;
 
                 if(horario != null){
-                    if(horarioDto.data()!=null){
-                        LocalDateTime data = LocalDateTime.parse(horarioDto.data());
-                        horario.setData(data);
+
+                    if(horarioDto.funcionario() != null || horarioDto.data() != null) {
+                        int op = verificarDto(horarioDto);
+
+                        switch (op) {
+                            case 1:
+                                funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
+                                data = LocalDateTime.parse(horarioDto.data());
+                                if(horarioDisponivel(funcionario,data)){
+                                    horario.setFuncionario(funcionario);
+                                    horario.setData(data);
+                                }else throw new Error("Horario não disponivel"); // exception?
+                                break;
+                            case 2:
+                                funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
+                                if(horarioDisponivel(funcionario,horario.getData())){
+                                    horario.setFuncionario(funcionario);
+                                }else throw new Error("Horario não disponivel");
+                                break;
+                            case 3:
+                                data = LocalDateTime.parse(horarioDto.data());
+                                if(horarioDisponivel(horario.getFuncionario(),data)){
+                                    horario.setData(data);
+                                }else throw new Error("Horario não disponivel");
+                                break;
+                        }
                     }
-                    if(horarioDto.funcionario()!=null){
-                        Funcionario funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
-                        horario.setFuncionario(funcionario);
-                    }
-                    if(horarioDto.servico()!=null){
+                    if(horarioDto.servico()!=null) {
                         Servico servico = servicoRepository.findByTipoServico(horarioDto.servico());
                         horario.setServico(servico);
                     }
-
                     agendamentoRepository.save(horario);
                 }
 
-            }else{
-                resposta = "null";
             }
 
         return resposta;
     }
+
+    private int verificarDto(HorarioDto dto){
+        int op;
+
+        if(dto.funcionario()!=null && dto.data()!=null){
+            op = 1;
+        }else if (dto.funcionario()!=null){
+            op = 2;
+        }else op = 3;
+
+
+        return op;
+    }
+
 }

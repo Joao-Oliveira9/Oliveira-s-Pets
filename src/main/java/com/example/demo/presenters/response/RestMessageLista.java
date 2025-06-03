@@ -1,5 +1,6 @@
 package com.example.demo.presenters.response;
 
+import com.example.demo.presenters.Dtos.AnimalAgendamentoDto;
 import com.example.demo.presenters.Dtos.AnimalDto;
 import com.example.demo.presenters.Dtos.AnimalUpdateDto;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,12 @@ public class RestMessageLista {
     String message;
 
     private List<AnimalUpdateDto> listaAnimais;
+
+    private AnimalAgendamentoDto animalAgendamentoDto;
+
+    public AnimalAgendamentoDto getAnimalAgendamentoDto() {return animalAgendamentoDto;}
+
+    public void setAnimalAgendamentoDto(AnimalAgendamentoDto animalAgendamentoDto) { this.animalAgendamentoDto = animalAgendamentoDto;}
 
     public List<AnimalUpdateDto> getListaAnimais() {
         return listaAnimais;

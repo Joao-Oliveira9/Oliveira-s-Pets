@@ -15,7 +15,7 @@ public class AgendamentoHorarioController {
     @Autowired
     AgendamentoHorarioUsecase agendamentoUsecase;
 
-    @PostMapping(value = "/horarios")
+    @PostMapping(value = "/agendarHorario")
     public ResponseEntity<RestMessage> postAgendamentoResquest(@RequestBody HorarioDto horarioDto){
         RestMessage restMessage = new RestMessage();
 
@@ -24,7 +24,7 @@ public class AgendamentoHorarioController {
         return ResponseEntity.status(HttpStatus.OK).body(restMessage);
     }
 
-    @DeleteMapping(value = "/horarios")
+    @DeleteMapping(value = "/cancelarAgendamento")
     public ResponseEntity<RestMessage> deleteAgendamentoRequest(@RequestBody HorarioDto horarioDto){
         RestMessage restMessage = new RestMessage();
 
@@ -33,7 +33,7 @@ public class AgendamentoHorarioController {
         return ResponseEntity.status(HttpStatus.OK).body(restMessage);
     }
 
-    @PutMapping(value = "/horarios")
+    @PutMapping(value = "/editarAgendamento")
     public ResponseEntity<RestMessage> updateAgendamentoRequest(@RequestBody HorarioDto horarioDto){
         RestMessage restMessage = new RestMessage();
 
@@ -42,7 +42,7 @@ public class AgendamentoHorarioController {
         return ResponseEntity.status(HttpStatus.OK).body(restMessage);
     }
 
-    @GetMapping(value = "/horarios")
+    @GetMapping(value = "/mostrarAgendamentos")
     public ResponseEntity<RestMessageListaAgendamento> getTodosAgendamentosRequest(){
         RestMessageListaAgendamento restMessage = new RestMessageListaAgendamento();
 
