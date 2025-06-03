@@ -19,7 +19,6 @@ INSERT INTO tb_funcionario VALUES (gen_random_uuid(), '808.909.010-11', NOW(), '
 INSERT INTO tb_funcionario VALUES (gen_random_uuid(), '909.010.121-22', NOW(), 'aline.ferreira@gmail.com', 'Aline Ferreira', '11998901234', NOW());
 INSERT INTO tb_funcionario VALUES (gen_random_uuid(), '010.121.232-33', NOW(), 'daniel.santos@gmail.com', 'Daniel Santos', '11999012345', NOW());
 
-SELECT * FROM tb_funcionario;
 
 INSERT INTO tb_categoria VALUES (gen_random_uuid(), 'Higiene');
 INSERT INTO tb_categoria VALUES (gen_random_uuid(), 'Alimentos');
@@ -325,7 +324,6 @@ VALUES
    (SELECT id FROM tb_marca WHERE nome_da_marca = 'PetPrime')
   );
 
-SELECT * FROM tb_estoque;
 
 INSERT INTO tb_estoque VALUES
 (gen_random_uuid(), now(), 65, 100, 15,  NOW(), (SELECT id FROM tb_produto where codigoean_13 = '22222')),
@@ -359,4 +357,7 @@ INSERT INTO tb_registroprodutos VALUES
 (gen_random_uuid(), NOW(), 2, NOW(), (SELECT id FROM tb_funcionario WHERE nome = 'Ana Pereira'), (SELECT id FROM tb_produto WHERE codigoean_13 = '17171')),
 (gen_random_uuid(), NOW(), 4, NOW(), (SELECT id FROM tb_funcionario WHERE nome = 'Daniel Santos'), (SELECT id FROM tb_produto WHERE codigoean_13 = '18181'));
 
-select * from tb_registroprodutos
+INSERT INTO tb_servico VALUES
+(gen_random_uuid(),'banho','25.0'),
+(gen_random_uuid(),'tosa','30.0'),
+(gen_random_uuid(),'banho e tosa','55.0');

@@ -37,6 +37,7 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
     String resposta;
 
     public String agendarHorario(HorarioDto horarioDto){
+        System.out.println(horarioDto.data());
         Funcionario funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
         Animal animal = animalRepository.findByCpfAndNome(horarioDto.cpf(),horarioDto.nome());
         if(animal==null){throw new Error("Animal não encontrado");}

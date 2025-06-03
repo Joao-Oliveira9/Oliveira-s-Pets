@@ -82,7 +82,7 @@ public class RegistroAnimalController {
 
     }
 
-    @GetMapping(value = "/mostrarAnimalAgendamento")
+    @PostMapping(value = "/mostrarAnimalAgendamento")
     public ResponseEntity<RestMessageLista> mostrarAnimalAgendamentoRequest(@RequestBody HorarioDto horarioDto){
         RestMessageLista restMessage = new RestMessageLista();
         restMessage.setAnimalAgendamentoDto(listaAnimalUseCase.mostrarAnimalAndTelefone(horarioDto));
