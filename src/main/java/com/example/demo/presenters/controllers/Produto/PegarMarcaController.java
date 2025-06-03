@@ -1,6 +1,6 @@
-package com.example.demo.presenters.Produto;
+package com.example.demo.presenters.controllers.Produto;
 
-import com.example.demo.core.domain.usecase.Produto.PegarFornecedorUseCase;
+import com.example.demo.core.domain.usecase.Produto.PegarMarcaUseCase;
 import com.example.demo.presenters.response.RestMessageGetObjects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,17 +13,17 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://127.0.0.1:5500")
-public class PegarFornecedorController {
+public class PegarMarcaController {
 
     @Autowired
-    PegarFornecedorUseCase pegarFornecedorUseCase;
+    PegarMarcaUseCase pegarMarcaUseCase;
 
-    @GetMapping(value = "/mostrarFornecedores")
+    @GetMapping(value = "/mostrarMarcas")
     public ResponseEntity<RestMessageGetObjects> postProdutoResquest() {
-        List fornecedores = pegarFornecedorUseCase.buscandoFornecedores();
+        List marcas = pegarMarcaUseCase.buscandoMarcas();
 
         RestMessageGetObjects restMessageGetObjects = new RestMessageGetObjects();
-        restMessageGetObjects.setLista(fornecedores);
+        restMessageGetObjects.setLista(marcas);
 
         return ResponseEntity.status(HttpStatus.OK).body(restMessageGetObjects);
     }

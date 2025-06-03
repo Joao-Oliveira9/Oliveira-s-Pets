@@ -1,4 +1,4 @@
-package com.example.demo.presenters;
+package com.example.demo.presenters.controllers;
 
 import com.example.demo.core.domain.usecase.DeleteAnimalUseCase;
 import com.example.demo.core.domain.usecase.ListaAnimalUseCase;
@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins= "http://127.0.0.1:5500")
 public class RegistroAnimalController {
 
     @Autowired
@@ -73,7 +73,7 @@ public class RegistroAnimalController {
     @PatchMapping(value = "/animais")
     public ResponseEntity<RestMessage> modificarInfoAnimalRequest(@RequestBody AnimalUpdateDto animalDto){
         RestMessage restMessage = new RestMessage();
-        restMessage.setMessage("animal cadastrado");
+        restMessage.setMessage("animal modificado");
 
         updateAnimalUseCase.updateRegistroAnimal(animalDto);
 

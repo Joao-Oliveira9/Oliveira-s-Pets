@@ -1,4 +1,4 @@
-package com.example.demo.presenters.Produto;
+package com.example.demo.presenters.controllers.Produto;
 
 import com.example.demo.core.domain.usecase.Produto.PegarCategoriaUseCase;
 import com.example.demo.presenters.response.RestMessageGetObjects;

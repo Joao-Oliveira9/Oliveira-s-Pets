@@ -2,6 +2,7 @@ package com.example.demo.core.service.Produto;
 
 import com.example.demo.core.domain.entities.*;
 import com.example.demo.core.domain.usecase.Produto.EditarProdutoUseCase;
+import com.example.demo.exceptions.ProdutoNotFoundException;
 import com.example.demo.infra.port.*;
 import com.example.demo.presenters.Dtos.ProdutoDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,8 +66,7 @@ public class EditarProdutoService implements EditarProdutoUseCase {
             produtoRepository.save(produto);
 
         }else{
-            //Produto nn encontrado
-            System.out.println("Produto nn encontrado");
+            throw new ProdutoNotFoundException("Nao foi possível encontrar o produto");
         }
 
     }

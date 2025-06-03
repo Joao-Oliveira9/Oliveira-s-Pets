@@ -2,6 +2,7 @@ package com.example.demo.core.service;
 
 import com.example.demo.core.domain.entities.Animal;
 import com.example.demo.core.domain.usecase.UpdateAnimalUseCase;
+import com.example.demo.exceptions.AnimalNotFoundException;
 import com.example.demo.infra.port.AnimalRepository;
 import com.example.demo.presenters.Dtos.AnimalUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,27 +26,31 @@ public class UpdateAnimalService implements UpdateAnimalUseCase {
         if(animalDto.id() != null){
             animal = animalRepository.findById(animalDto.id()).orElse(null);
             if(animal != null){
-                System.out.println("passei aqui");
-                if(animalDto.cpf_dono()!=null){
+
+                if(animalDto.cpf_dono() != null){
+                    System.out.println(animalDto.cpf_dono());
                     animal.setCpf(animalDto.cpf_dono());
-                } if (animalDto.nome_do_animal()!=null) {
-                    animal.setNome(animalDto.cpf_dono());
-                }  if (animalDto.idade()!=null) {
-                    animal.setIdade(animalDto.idade());
-                } if (animalDto.tipo()!=null) {
-                    animal.setTipo(animalDto.tipo());
-                }  if (animalDto.peso()!=null) {
-                    System.out.println("passei aqui");
-                    animal.setPeso(animalDto.peso());
-                }
-                  if (animalDto.nome_do_animal()!=null) {
+                } if (!animalDto.nome_do_animal().isEmpty()) {
+                    System.out.println(animalDto.nome_do_animal());
                     animal.setNome(animalDto.nome_do_animal());
+                }  if (!animalDto.idade().isEmpty()) {
+                    System.out.println(animalDto.idade());
+                    animal.setIdade(animalDto.idade());
+                } if (!animalDto.tipo().isEmpty()) {
+                    System.out.println(animalDto.tipo());
+                    animal.setTipo(animalDto.tipo());
+                }  if (!animalDto.peso().isEmpty()) {
+                    System.out.println(animalDto.peso());
+                    animal.setPeso(animalDto.peso());
+                } if(!animalDto.telefone().isEmpty()){
+                    System.out.println(animalDto.telefone());
+                    animal.setTelefone(animalDto.telefone());
                 }
                 animalRepository.save(animal);
             }
         }
         else {
-            System.out.println("Null");
+            throw new AnimalNotFoundException("Não foi possivel encontrar o animal");
         }
 
 
