@@ -26,8 +26,7 @@ public class UpdateAnimalService implements UpdateAnimalUseCase {
         if(animalDto.id() != null){
             animal = animalRepository.findById(animalDto.id()).orElse(null);
             if(animal != null){
-
-                if(animalDto.cpf_dono() != null){
+                if(!animalDto.cpf_dono().isEmpty()){
                     System.out.println(animalDto.cpf_dono());
                     animal.setCpf(animalDto.cpf_dono());
                 } if (!animalDto.nome_do_animal().isEmpty()) {

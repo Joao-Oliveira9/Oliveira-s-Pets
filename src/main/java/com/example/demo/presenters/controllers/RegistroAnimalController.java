@@ -34,7 +34,7 @@ public class RegistroAnimalController {
     @PostMapping(value = "/animais")
     public ResponseEntity<RestMessage> postAnimalResquest(@RequestBody AnimalDto animalDto){
         RestMessage restMessage = new RestMessage();
-        restMessage.setMessage("animal cadastrado");
+        restMessage.setMessage("animal cadastrado com sucesso");
 //        System.out.println(animalDto.idade());
         registroDeAnimalUsecase.registroAnimal(animalDto);
 
@@ -44,7 +44,7 @@ public class RegistroAnimalController {
     @DeleteMapping(value = "/animais")
     public ResponseEntity<RestMessage> deleteAnimalResquest(@RequestBody AnimalDeleteDto animalDto){
         RestMessage restMessage = new RestMessage();
-        restMessage.setMessage("animal cadastrado");
+        restMessage.setMessage("animal deletado com sucesso");
 //        System.out.println(animalDto.idade());
 //        registroDeAnimalUsecase.registroAnimal(animalDto);
 

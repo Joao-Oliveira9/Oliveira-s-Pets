@@ -1,8 +1,6 @@
 package com.example.demo.presenters.controllers.Produto;
 
 import com.example.demo.core.domain.usecase.Produto.MostrarProdutosUseCase;
-import com.example.demo.presenters.Dtos.ProdutoDto;
-import com.example.demo.presenters.response.RestMessage;
 import com.example.demo.presenters.response.RestMessageGetObjects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,4 +27,5 @@ public class MostrarProdutoController {
 
         return ResponseEntity.status(HttpStatus.OK).body(restMessageGetObjects);
     }
+
 }

@@ -12,6 +12,7 @@ import com.example.demo.infra.port.ServicoRepository;
 import com.example.demo.presenters.Dtos.HorarioDto;
 import com.example.demo.presenters.Dtos.ListHorariosDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

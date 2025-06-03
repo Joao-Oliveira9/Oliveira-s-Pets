@@ -49,11 +49,6 @@ public class RegistroProdutoVendidoService implements RegistroProdutosUseCase {
         if(produto == null){
             throw new ProdutoNotFoundException("Não foi possível encontrar o produto");
         } else {
-            boolean status = atualizandoQtdAtual(produto, Integer.parseInt(registrarProdutosDto.qtdVendida()));
-
-            if(!status) {
-                throw new EstoqueAcabandoException("Precisa repor o produto " + nome + " de codigo " + codigoEan_13);
-            }
 
             Funcionario funcionario = funcionarioRepository.findByNome(nome);
 
@@ -71,6 +66,13 @@ public class RegistroProdutoVendidoService implements RegistroProdutosUseCase {
                 registroProdutos.setUpdate_at(LocalDateTime.now());
 
                 registroProdutoRepository.save(registroProdutos);
+
+                boolean status = atualizandoQtdAtual(produto, Integer.parseInt(registrarProdutosDto.qtdVendida()));
+
+                if(!status) {
+                    throw new EstoqueAcabandoException("Precisa repor o produto " + produto.getNome() + " de codigo " + codigoEan_13);
+                }
+
             }
         }
     }
