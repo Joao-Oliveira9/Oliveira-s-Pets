@@ -6,6 +6,7 @@ import com.example.demo.core.domain.entities.Produto;
 import com.example.demo.core.domain.entities.RegistroProdutos;
 import com.example.demo.core.domain.usecase.RegistroProdutosUseCase;
 import com.example.demo.exceptions.EstoqueAcabandoException;
+import com.example.demo.exceptions.EstoqueNotFoundException;
 import com.example.demo.exceptions.FuncionarioNotFoundException;
 import com.example.demo.exceptions.ProdutoNotFoundException;
 import com.example.demo.infra.port.EstoqueRepository;
@@ -65,12 +66,16 @@ public class RegistroProdutoVendidoService implements RegistroProdutosUseCase {
                 registroProdutos.setCreated_at(LocalDateTime.now());
                 registroProdutos.setUpdate_at(LocalDateTime.now());
 
-                registroProdutoRepository.save(registroProdutos);
+                String status = atualizandoQtdAtual(produto, Integer.parseInt(registrarProdutosDto.qtdVendida()));
 
-                boolean status = atualizandoQtdAtual(produto, Integer.parseInt(registrarProdutosDto.qtdVendida()));
+                if(status.equals("inválido")){
+                    throw new EstoqueNotFoundException("Número de vendas inválidos: Tem mais do que a qtdAtual");
+                }else {
+                    if(status.equals("false")) {
+                        throw new EstoqueAcabandoException("Precisa repor o produto " + produto.getNome() + " de codigo " + codigoEan_13);
+                    }
 
-                if(!status) {
-                    throw new EstoqueAcabandoException("Precisa repor o produto " + produto.getNome() + " de codigo " + codigoEan_13);
+                    registroProdutoRepository.save(registroProdutos);
                 }
 
             }
@@ -99,21 +104,24 @@ public class RegistroProdutoVendidoService implements RegistroProdutosUseCase {
         return produtos;
     }
 
-    public boolean atualizandoQtdAtual(Produto produto, Integer qtdVendida){
+    public String atualizandoQtdAtual(Produto produto, Integer qtdVendida){
         Estoque estoque = estoqueRepository.findByProduto(produto);
 
         Integer qtdAtual = estoque.getQtdAtual();
         Integer qtdAtualNova = qtdAtual - qtdVendida;
 
-        estoque.setQtdAtual(qtdAtualNova);
-        estoqueRepository.save(estoque);
+        if(qtdAtualNova < 0){
+            return "inválido";
+        }else {
+            estoque.setQtdAtual(qtdAtualNova);
+            estoqueRepository.save(estoque);
 
-        if(estoque.getQtdAtual() > estoque.getQtdMin()){
-            return true;
-        }else{
-            return false;
+            if (estoque.getQtdAtual() > estoque.getQtdMin()) {
+                return "true";
+            } else {
+                return "false";
+            }
         }
-
     }
 
 }

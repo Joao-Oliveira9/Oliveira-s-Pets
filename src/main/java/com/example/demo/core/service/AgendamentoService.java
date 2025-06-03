@@ -131,9 +131,11 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
                 Funcionario funcionario;
 
                 if(horario != null){
-
-                    if(horarioDto.funcionario() != null || horarioDto.data() != null) {
+                    System.out.println(horarioDto.data());
+                    System.out.println(horarioDto.funcionario());
+                    if(!horarioDto.funcionario().isEmpty() || horarioDto.data() != null) {
                         int op = verificarDto(horarioDto);
+                        System.out.println(op);
 
                         switch (op) {
                             case 1:
@@ -146,11 +148,14 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
                                 break;
                             case 2:
                                 funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
+                                System.out.println(horarioDto.funcionario());
                                 if(horarioDisponivel(funcionario,horario.getDataHorario())){
+                                    System.out.println(horario.getDataHorario());
                                     horario.setFuncionario(funcionario);
                                 }else throw new Error("Horario não disponivel");
                                 break;
                             case 3:
+                                System.out.println(horarioDto.data());
                                 data = LocalDateTime.parse(horarioDto.data());
                                 if(horarioDisponivel(horario.getFuncionario(),data)){
                                     horario.setData(data);
@@ -158,10 +163,11 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
                                 break;
                         }
                     }
-                    if(horarioDto.servico()!=null) {
+                    if(!horarioDto.servico().isEmpty()) {
                         Servico servico = servicoRepository.findByTipoServico(horarioDto.servico());
                         horario.setServico(servico);
                     }
+                    System.out.println(horario.getServico().getTipo_servico());
                     agendamentoRepository.save(horario);
                 }
 
@@ -173,9 +179,11 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
     private int verificarDto(HorarioDto dto){
         int op;
 
-        if(dto.funcionario()!=null && dto.data()!=null){
+        System.out.println(dto.data());
+        if(!dto.funcionario().isEmpty() && dto.data() != null){
+            System.out.println(dto.data());
             op = 1;
-        }else if (dto.funcionario()!=null){
+        }else if (!dto.funcionario().isEmpty()){
             op = 2;
         }else op = 3;
 

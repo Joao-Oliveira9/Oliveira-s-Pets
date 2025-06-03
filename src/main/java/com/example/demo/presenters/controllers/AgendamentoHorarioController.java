@@ -49,9 +49,8 @@ public class AgendamentoHorarioController {
     @GetMapping(value = "/mostrarAgendamentos")
     public ResponseEntity<RestMessageListaAgendamento> getTodosAgendamentosRequest(){
         RestMessageListaAgendamento restMessage = new RestMessageListaAgendamento();
-        System.out.println("oie");
         restMessage.setListaAgendamentos(agendamentoUsecase.mostrarTodosAgendamentos());
-        System.out.println("oie");
+
         return ResponseEntity.status(HttpStatus.OK).body(restMessage);
     }
 }
