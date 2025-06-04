@@ -46,6 +46,15 @@ public class AgendamentoHorarioController {
         return ResponseEntity.status(HttpStatus.OK).body(restMessage);
     }
 
+    @PatchMapping(value = "/concluirAgendamento")
+    public ResponseEntity<RestMessage> concluirAgendamentoRequest(@RequestBody HorarioDto horarioDto){
+        RestMessage restMessage = new RestMessage();
+
+        restMessage.setMessage(agendamentoUsecase.concluirAgendamento(horarioDto));
+
+        return ResponseEntity.status(HttpStatus.OK).body(restMessage);
+    }
+
     @GetMapping(value = "/mostrarAgendamentos")
     public ResponseEntity<RestMessageListaAgendamento> getTodosAgendamentosRequest(){
         RestMessageListaAgendamento restMessage = new RestMessageListaAgendamento();

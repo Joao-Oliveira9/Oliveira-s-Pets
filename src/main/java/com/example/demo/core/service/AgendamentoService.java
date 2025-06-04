@@ -106,6 +106,22 @@ public class AgendamentoService implements AgendamentoHorarioUsecase {
         return listaDto;
     }
 
+    public String concluirAgendamento(HorarioDto horarioDto) {
+        if(horarioDto.id() != null){
+            UUID id = UUID.fromString(horarioDto.id());
+            Horario horario = agendamentoRepository.findById(id).orElse(null);
+            if(horario != null){
+                if(horario.getStatus().equals("Pendente")) {
+                    horario.setStatus("Concluido");
+                    agendamentoRepository.save(horario);
+                    resposta = "Agendamento concluido com sucesso";
+                }else throw new Error("Só é possivel concluir agendamentos pendentes");
+            }else throw new Error("Nenhum agendamento encontrado");
+        }
+
+        return resposta;
+    }
+
     public String cancelarAgendamento(HorarioDto horarioDto) {
         Funcionario funcionario = funcionarioRepository.findByNome(horarioDto.funcionario());
         //if(funcionario==null){throw new Exception()} exceção nao tem funcionario

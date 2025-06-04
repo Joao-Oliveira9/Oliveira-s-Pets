@@ -9,5 +9,6 @@ public interface AgendamentoHorarioUsecase {
     public String agendarHorario(HorarioDto horarioDto);
     public List<ListHorariosDto> mostrarTodosAgendamentos();
     public String cancelarAgendamento(HorarioDto horarioDto);
+    public String concluirAgendamento(HorarioDto horarioDto);
     public String editarAgendamento(HorarioDto horarioDto);
 }
